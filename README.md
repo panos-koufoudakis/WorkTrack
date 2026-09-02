@@ -26,7 +26,7 @@ WorkTrack — Τελικό Project για το Coding Factory του ΚΕΔΙΒ�
 | --- | --- |
 | ![Login placeholder](docs/screenshots/WorkTrack-login.png) | ![Dashboard placeholder](docs/screenshots/dashboard-placeholder.svg) |
 
-![Mobile placeholder](docs/screenshots/mobile-placeholder.svg)
+![Mobile placeholder](docs/screenshots/WorkTrack-login-mobile.png)
 
 ## Τι μπορεί να κάνει
 
