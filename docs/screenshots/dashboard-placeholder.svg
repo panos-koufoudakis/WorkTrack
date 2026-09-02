@@ -1,0 +1,14 @@
+<!--
+WorkTrack — Τελικό Project για το Coding Factory του ΚΕΔΙΒΙΜ του ΟΠΑ.
+Δημιουργός: Παναγιώτης Κουφουδάκης <pkoufoudakis@outlook.com>.
+Φοιτητής στο Τμήμα Ηλεκτρολόγων Μηχανικών & Τεχνολογίας Υπολογιστών του Πανεπιστημίου Πατρών.
+-->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f4f7f5"/><rect width="250" height="720" fill="#173f3a"/><rect x="28" y="40" width="42" height="42" rx="13" fill="#58a990"/><text x="49" y="69" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="white">W</text>
+  <text x="300" y="95" font-family="Arial" font-size="38" font-weight="700" fill="#18312d">Dashboard — screenshot placeholder</text>
+  <g fill="white" stroke="#dce5e1"><rect x="300" y="145" width="205" height="120" rx="16"/><rect x="525" y="145" width="205" height="120" rx="16"/><rect x="750" y="145" width="205" height="120" rx="16"/><rect x="975" y="145" width="205" height="120" rx="16"/><rect x="300" y="290" width="560" height="330" rx="18"/><rect x="880" y="290" width="300" height="330" rx="18"/></g>
+  <g fill="#dff3ec"><rect x="325" y="170" width="42" height="42" rx="12"/><rect x="550" y="170" width="42" height="42" rx="12"/><rect x="775" y="170" width="42" height="42" rx="12"/><rect x="1000" y="170" width="42" height="42" rx="12"/></g>
+  <text x="640" y="680" text-anchor="middle" font-family="Arial" font-size="14" fill="#83928e">Αντικαταστήστε με πραγματικό screenshot πριν την τελική παρουσίαση</text>
+</svg>
+

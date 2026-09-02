@@ -1,0 +1,104 @@
+// WorkTrack — Τελικό Project για το Coding Factory του ΚΕΔΙΒΙΜ του ΟΠΑ.
+// Δημιουργός: Παναγιώτης Κουφουδάκης <pkoufoudakis@outlook.com>.
+// Φοιτητής στο Τμήμα Ηλεκτρολόγων Μηχανικών & Τεχνολογίας Υπολογιστών του Πανεπιστημίου Πατρών.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  EMPLOYEE
+  MANAGER
+  ADMIN
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id                    String             @id @default(uuid())
+  email                 String             @unique
+  passwordHash          String
+  firstName             String
+  lastName              String
+  jobTitle              String?
+  role                   Role               @default(EMPLOYEE)
+  active                 Boolean            @default(true)
+  departmentId          String?
+  department            Department?         @relation("DepartmentMembers", fields: [departmentId], references: [id], onDelete: SetNull)
+  managedDepartment     Department?         @relation("DepartmentManager")
+  attendanceRecords     AttendanceRecord[]
+  leaveRequests         LeaveRequest[]       @relation("EmployeeLeaves")
+  reviewedLeaveRequests LeaveRequest[]       @relation("LeaveReviewer")
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+
+  @@index([departmentId])
+  @@index([role, active])
+}
+
+model Department {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  code      String   @unique
+  managerId String?  @unique
+  manager   User?    @relation("DepartmentManager", fields: [managerId], references: [id], onDelete: SetNull)
+  members   User[]   @relation("DepartmentMembers")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttendanceRecord {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  checkIn   DateTime
+  checkOut  DateTime?
+  notes     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId, checkIn])
+}
+
+model LeaveType {
+  id          String         @id @default(uuid())
+  name        String         @unique
+  description String?
+  active      Boolean        @default(true)
+  requests    LeaveRequest[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model LeaveRequest {
+  id            String       @id @default(uuid())
+  employeeId    String
+  employee      User         @relation("EmployeeLeaves", fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveTypeId   String
+  leaveType     LeaveType    @relation(fields: [leaveTypeId], references: [id], onDelete: Restrict)
+  startDate     DateTime      @db.Date
+  endDate       DateTime      @db.Date
+  totalDays     Int
+  reason        String?
+  status        LeaveStatus  @default(PENDING)
+  reviewedById  String?
+  reviewedBy    User?        @relation("LeaveReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt    DateTime?
+  reviewComment String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([employeeId, createdAt])
+  @@index([status])
+  @@index([leaveTypeId])
+}
+

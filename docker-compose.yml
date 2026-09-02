@@ -1,0 +1,26 @@
+# WorkTrack — Τελικό Project για το Coding Factory του ΚΕΔΙΒΙΜ του ΟΠΑ.
+# Δημιουργός: Παναγιώτης Κουφουδάκης <pkoufoudakis@outlook.com>.
+# Φοιτητής στο Τμήμα Ηλεκτρολόγων Μηχανικών & Τεχνολογίας Υπολογιστών του Πανεπιστημίου Πατρών.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: worktrack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: worktrack
+      POSTGRES_USER: worktrack
+      POSTGRES_PASSWORD: worktrack_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - worktrack_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U worktrack -d worktrack"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  worktrack_postgres_data:
+

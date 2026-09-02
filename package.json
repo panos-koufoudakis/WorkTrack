@@ -1,0 +1,24 @@
+{
+  "name": "worktrack",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "description": "WorkTrack - Διαχείριση παρουσιών και αδειών εργαζομένων",
+  "author": {
+    "name": "Παναγιώτης Κουφουδάκης",
+    "email": "pkoufoudakis@outlook.com"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter ./backend --filter ./frontend dev",
+    "dev:backend": "pnpm --dir backend dev",
+    "dev:frontend": "pnpm --dir frontend dev",
+    "build": "pnpm --dir frontend build",
+    "test": "pnpm --dir backend test",
+    "test:coverage": "pnpm --dir backend test:coverage",
+    "db:migrate": "pnpm --dir backend prisma:migrate",
+    "db:seed": "pnpm --dir backend prisma:seed"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
